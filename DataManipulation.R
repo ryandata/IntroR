@@ -297,13 +297,9 @@ rename(mygender, Country.Name = Nation)
 mydata<-merge(mygender,myMDI,all=TRUE)
 mydata
 
-# some other useful dplyr actions
-
-# summarise (British spelling preferred)
-
-mydata %>%
-  group_by(Country.Name) %>%
-  summarise(avg_delay = mean(ArrDelay, na.rm=TRUE))
+# the tidyr package can also be used for merge and reshape operations
+# see
+# https://rpubs.com/bradleyboehmke/data_wrangling
 
 ###################################################
 ### code chunk number 29: split
