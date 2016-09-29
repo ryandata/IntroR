@@ -40,7 +40,7 @@ qplot(x*y*z,carat)
 ###################################################
 ### code chunk number 5: grouped_scatterplots
 ###################################################
-xyplot(price~carat| factor(clarity))
+xyplot(price~carat| clarity)
 ggplot(diamonds, aes(carat,price)) + facet_grid(.~clarity) + geom_point()
 
 

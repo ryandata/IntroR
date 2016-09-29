@@ -297,9 +297,15 @@ rename(mygender, Country.Name = Nation)
 mydata<-merge(mygender,myMDI,all=TRUE)
 mydata
 
-# the tidyr package can also be used for merge and reshape operations
+# dplyr supports database-style join operations (inner, outer, left, right, full)
+# the dplyr equivalent is 
+
+mydata2 <- full_join(mygender,myMDI)
+
+# the tidyr package can also be used for data manipulation operations
 # see
 # https://rpubs.com/bradleyboehmke/data_wrangling
+# https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf
 
 ###################################################
 ### code chunk number 29: split
@@ -333,7 +339,7 @@ years
 ###################################################
 ### code chunk number 32: reshape
 ###################################################
-library(reshape2)
+library(reshape)
 mylongdata<-reshape(mydata, varying=years, direction="long", sep="")
 mylongdata
 
@@ -346,7 +352,7 @@ mymelt<-melt(mydata, id=c("Country.Name","Indicator.Name"))
 mymelt$variable<-as.numeric(sub("X","",mymelt$variable))
 names(mymelt)[3]<-"year"
 head(mymelt)
-mycast<-dcast(mymelt,year+Country.Name~Indicator.Name)
+mycast<-cast(mymelt,year+Country.Name~Indicator.Name)
 head(mycast)
 
 # some other useful dplyr functions
@@ -448,5 +454,14 @@ dbDisconnect(con)
 
 # once the connection is made, we can operate on a remote database as if it is loaded in R
 
+my_db <- src_mysql(dbname="hg19", host="genome-mysql.cse.ucsc.edu", user="genome")
 
+my_db %>% tbl("knownGene") %>% head(5)
 
+my_db %>% 
+arrange(knownGene, desc(chrom))
+
+knownGenesql<-tbl(my_db, "knownGene")
+
+my_db %>% tbl("knownGene")
+  filter(proteinID, c("095872"))
