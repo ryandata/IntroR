@@ -1,4 +1,4 @@
-# 2016-09-28 version
+# 2017-01-31 version
 
 ### R code from vignette source 'DataManipulationR.Rnw'
 ### Encoding: UTF-8
