@@ -1,4 +1,4 @@
-# 2016-09-28 version
+# 2017-01-31 version
 
 ### R code from vignette source 'DataManipulationR.Rnw'
 ### Encoding: UTF-8
@@ -149,7 +149,7 @@ print(i*i)
 download.file("http://databank.worldbank.org/data/download/Gender_Stats_csv.zip","Gender.zip")
 unzip("Gender.zip")
 #change name..
-genderstats<-read.csv("GenderStat_Data.csv")
+genderstats<-read.csv("Gender_Stat_Data.csv", fileEncoding="UTF-8-BOM")
 head(genderstats)
 
 
@@ -159,7 +159,7 @@ head(genderstats)
 download.file("http://databank.worldbank.org/data/download/MDG_csv.zip","MDG.zip")
 unzip("MDG.zip")
 #change name...
-MDstats<-read.csv("MDG_Data.csv")
+MDstats<-read.csv("MDG_Data.csv", fileEncoding="UTF-8-BOM")
 
 head(MDstats)
 
